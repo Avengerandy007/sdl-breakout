@@ -1,0 +1,60 @@
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_rect.h>
+#include <SDL2/SDL_render.h>
+#include <iostream>
+#include "vector.hpp"
+#include "globals.hpp"
+#include "color.hpp"
+#include "window.hpp"
+#pragma once
+
+class Object{
+protected:
+	SDL_Rect rect{0,0,50,50};
+	Vector2 pos;
+	const Color color;
+public:
+	static std::vector<Object*> totalObjects; 
+	
+private:
+	void Render(){
+		SDL_SetRenderDrawColor(mainWindow->renderer, color.r, color.g, color.b, color.a);
+		SDL_RenderDrawRect(mainWindow->renderer, &rect);
+		SDL_RenderFillRect(mainWindow->renderer, &rect);
+	}
+
+public:
+	virtual void Update(){
+		Render();
+	}
+
+	Object(){
+		totalObjects.push_back(this);	
+		std::cout << totalObjects.size() << std::endl;
+	}
+
+	virtual ~Object(){
+		int i = FindIndexOf<Object>(this, &totalObjects); //Find the index of this object in the list
+		totalObjects.erase(totalObjects.begin() + i); //And remove it
+	}
+};
+
+class MovableObject : Object{
+public:
+	Vector2 dir;
+	int speed;
+
+	void Move(){
+		pos.X += speed * dir.X;
+		pos.Y += speed * dir.Y;
+	}
+
+	void KeepRectAtPos(){
+		rect.x = pos.X;
+		rect.y = pos.Y;
+	}
+
+	void Update() override{
+		KeepRectAtPos();
+	}
+};
