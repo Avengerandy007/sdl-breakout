@@ -16,10 +16,6 @@ void PollEvents(){
 			case SDL_QUIT:
 				running = false;
 				break;
-			
-			case SDL_KEYUP:
-				delete testObj;
-				break;
 		}	
 	}
 }

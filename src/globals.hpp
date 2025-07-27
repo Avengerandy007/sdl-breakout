@@ -3,8 +3,6 @@
 #include "window.hpp"
 
 extern Window* mainWindow;
-class Object;
-extern Object* testObj;
 
 template<typename T>
 int FindIndexOf(T *myObj, std::vector<T*>* list){

@@ -9,11 +9,10 @@
 #pragma once
 
 class Object{
-protected:
-	SDL_Rect rect{0,0,50,50};
+public:
+	SDL_Rect rect;
 	Vector2 pos;
 	const Color color;
-public:
 	static std::vector<Object*> totalObjects; 
 	
 private:

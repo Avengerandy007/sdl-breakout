@@ -7,7 +7,6 @@
 
 
 bool running = true;
-Object* testObj = new Object();
 int main(){
 	printf("Hello world from cpp\n");
 	mainWindow->Setup();
