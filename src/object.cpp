@@ -10,16 +10,15 @@ void Object::Update(){
 }
 
 Object::Object(){
-	color.r = randomInt(0, 255);
-	color.g = randomInt(0, 255);
-	color.b = randomInt(0, 255);
-	color.a = 255;
-
+	SetColors();
 	totalObjects.push_back(this);	
 	rect.x = 0;
 	rect.y = 0;
 	rect.w = 50;
 	rect.h = 30;
+	if (IsColorBlack()){
+		SetColors();
+	}
 }
 
 Object::~Object(){
