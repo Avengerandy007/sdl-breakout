@@ -1,6 +1,6 @@
 #include "../include/object.hpp"
 #include "../include/Scene.hpp"
-#include "../include/globals.hpp"
+#include <cmath>
 #include <iostream>
 #include <vector>
 
@@ -60,8 +60,12 @@ void MovableObject::KeepRectAtPos(){
 
 //Ball class defs
 void Ball::Reflect(){
-	dir.X = -dir.X;
-	dir.Y = -dir.Y;
+	int factor = randomInt(-45, 45);
+	dir.X = dir.X + factor;
+	dir.Y = dir.Y + factor;
+	float magnitude = std::sqrt(dir.X * dir.X + dir.Y * dir.Y);
+	dir.X /= magnitude;
+	dir.Y /= magnitude;
 }
 
 bool Ball::CheckCollsion(Object* obj){
@@ -73,8 +77,9 @@ bool Ball::CheckCollsion(Object* obj){
 }
 
 Ball::Ball(){
+	speed = 2;
 	dir.X = 0;
-	dir.Y = -1;
+	dir.Y = 1;
 }
 
 void Ball::Update(){

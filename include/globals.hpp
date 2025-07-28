@@ -2,7 +2,6 @@
 #include <vector>
 #include <random>
 #include <iostream>
-#include "object.hpp"
 #include "window.hpp"
 
 extern Window* mainWindow;

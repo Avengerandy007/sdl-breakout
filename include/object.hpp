@@ -7,6 +7,7 @@
 #include "globals.hpp"
 #include "color.hpp"
 #include "window.hpp"
+#include "dirVector.hpp"
 
 class Object{
 public:
@@ -21,14 +22,14 @@ public:
 protected:
 	void Render();
 private:
-	inline void SetColors(){
+	void SetColors(){
 		color.r = randomInt(0, 255);
 		color.g = randomInt(0, 255);
 		color.b = randomInt(0, 255);
 		color.a = 255;
 	}
 
-	inline bool IsColorBlack(){
+	bool IsColorBlack(){
 		if (color.r == 0 && color.g == 0 && color.b == 0){
 			return true;
 		}else{
@@ -41,7 +42,7 @@ private:
 class MovableObject : public Object{
 public:
 	Vector2 pos;
-	Vector2 dir;
+	DirVector2 dir;
 	int speed;
 
 	void Move();

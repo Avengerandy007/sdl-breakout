@@ -21,13 +21,6 @@ void Scene::SortBlocks(unsigned short& index, unsigned short& indexOnLine, unsig
 	std::cout << "Moved object at index " << index << " to position (X,Y) (" << blocks[index]->rect.x << "," << blocks[index]->rect.y << ")" << std::endl;
 }
 
-void Scene::SortBalls(){
-	uint32_t startLine = 350;
-	for(uint32_t i = 0; i < 3; i++){
-		balls[i]->pos.Y = startLine + i * 25;
-	}
-}
-
 void Scene::SetupObjects(){
 	unsigned short indexOnLine = 0;
 	unsigned short currentLine = 0;
@@ -37,18 +30,14 @@ void Scene::SetupObjects(){
 	for (unsigned short i = 0; i < amountOfBlocks; i++){
 		SortBlocks(i, indexOnLine, currentLine);
 	}
-	
-	for(auto& ptr : balls){
-		ptr = new Ball();
-		ptr->pos.X = 600;
-	}
-	SortBalls();
+	ball = new Ball();
+	ball->pos.X = 300;
+	ball->pos.Y = 225;
 }
 
 Scene::Scene(unsigned short sizeOfArray){
 	amountOfBlocks = sizeOfArray;
 	blocks.resize(amountOfBlocks);
-	balls.resize(3);
 	Scene::SetupObjects();
 }
 
@@ -57,8 +46,5 @@ Scene::~Scene(){
 		delete block;
 	}
 	blocks.clear();
-	for(Ball* ball : balls){
-		delete ball;
-	}
-	balls.clear();
+	delete ball;
 }

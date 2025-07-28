@@ -5,7 +5,7 @@
 class Scene{
 public:
 	std::vector<Object*> blocks;//Array of all blocks in scene
-	std::vector<Ball*> balls;
+	Ball* ball;
 
 	void SortBlocks(unsigned short& index, unsigned short& indexOnLine, unsigned short& currentLine);
 	void SortBalls();
