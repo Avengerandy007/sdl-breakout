@@ -39,5 +39,6 @@ void Update(){
 			obj->Update();
 		}
 		SDL_RenderPresent(mainWindow->renderer);
+		SDL_Delay(6);
 	}
 }

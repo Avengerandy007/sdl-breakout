@@ -5,8 +5,10 @@
 class Scene{
 public:
 	std::vector<Object*> blocks;//Array of all blocks in scene
+	std::vector<MovableObject*> balls;
 
-	void SortThis(unsigned short& index, unsigned short& indexOnLine, unsigned short& currentLine);
+	void SortBlocks(unsigned short& index, unsigned short& indexOnLine, unsigned short& currentLine);
+	void SortBalls();
 	void SetupObjects();
 
 	Scene(unsigned short sizeOfArray);

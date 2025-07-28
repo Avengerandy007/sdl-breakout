@@ -41,6 +41,8 @@ void MovableObject::Move(){
 
 MovableObject::MovableObject(){
 	speed = 1;
+	rect.w = 25;
+	rect.h = 25;
 }
 
 void MovableObject::Update(){

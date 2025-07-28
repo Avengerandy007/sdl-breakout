@@ -13,9 +13,9 @@ MovableObject* player = new MovableObject();
 void SetPlayer(){
 	player->rect.w = 75;
 	player->rect.h = 25;
-	player->pos.X = 250;
-	player->pos.Y = 400;
-	player->speed = 10;
+	player->pos.X  = 250;
+	player->pos.Y  = 400;
+	player->speed  = 10;
 }
 
 int main(){
@@ -24,7 +24,7 @@ int main(){
 	SetPlayer();
 	Update();
 	delete player;
-	if (scene) delete scene;
+	delete scene;
 	delete mainWindow;
 	return 0;
 }
