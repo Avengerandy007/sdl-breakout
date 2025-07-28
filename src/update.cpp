@@ -1,7 +1,7 @@
-#include "globals.hpp"
-#include "Scene.hpp"
-#include "update.hpp"
-#include "object.hpp"
+#include "../include/globals.hpp"
+#include "../include/Scene.hpp"
+#include "../include/update.hpp"
+#include "../include/object.hpp"
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_keyboard.h>
 #include <SDL2/SDL_keycode.h>

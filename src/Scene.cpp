@@ -1,6 +1,6 @@
-#include "Scene.hpp"
-#include "object.hpp"
-#include "globals.hpp"
+#include "../include/Scene.hpp"
+#include "../include/object.hpp"
+#include "../include/globals.hpp"
 #include <algorithm>
 #include <iterator>
 #include <vector>

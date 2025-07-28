@@ -1,5 +1,5 @@
-#include "object.hpp"
-#include "globals.hpp"
+#include "../include/object.hpp"
+#include "../include/globals.hpp"
 #include <vector>
 
 std::vector<Object*> Object::totalObjects;

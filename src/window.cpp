@@ -1,4 +1,4 @@
-#include "window.hpp"
+#include "../include/window.hpp"
 
 void Window::Render(){
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
