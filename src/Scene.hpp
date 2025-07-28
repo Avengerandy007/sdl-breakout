@@ -8,8 +8,8 @@ class Scene{
 public:
 	Object* blocks;//Array of all blocks in scene
 
+	void SortThis(int index);
 	void SetupObjects();
-	void RenderObjects();
 
-	Scene(int amountOfBlocks);
+	Scene(unsigned short sizeOfArray);
 };

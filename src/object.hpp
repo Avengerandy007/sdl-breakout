@@ -11,7 +11,6 @@
 class Object{
 public:
 	SDL_Rect rect;
-	Vector2 pos;
 	const Color color;
 	static std::vector<Object*> totalObjects; 
 	
@@ -29,7 +28,10 @@ public:
 
 	Object(){
 		totalObjects.push_back(this);	
-		std::cout << totalObjects.size() << std::endl;
+		rect.x = 0;
+		rect.y = 0;
+		rect.w = 30;
+		rect.h = 30;
 	}
 
 	virtual ~Object(){
@@ -40,6 +42,7 @@ public:
 
 class MovableObject : Object{
 public:
+	Vector2 pos;
 	Vector2 dir;
 	int speed;
 
@@ -57,3 +60,5 @@ public:
 		KeepRectAtPos();
 	}
 };
+
+void SetCorrectPossition(Object* array[]);

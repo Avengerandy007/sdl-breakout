@@ -4,9 +4,11 @@
 #include "update.hpp"
 #include "globals.hpp"
 #include "object.hpp"
+#include "Scene.hpp"
 
 
 bool running = true;
+Scene level1(5);
 int main(){
 	printf("Hello world from cpp\n");
 	mainWindow->Setup();

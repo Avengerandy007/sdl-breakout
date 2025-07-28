@@ -25,7 +25,6 @@ void Update(){
 	while(running){
 		PollEvents();
 		mainWindow->Render();
-		std::cout << "Total objects: " << Object::totalObjects.size() << std::endl;
 		for(Object* obj : Object::totalObjects){
 			obj->Update();
 		}
