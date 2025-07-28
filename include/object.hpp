@@ -11,7 +11,7 @@
 class Object{
 public:
 	SDL_Rect rect;
-	const Color color;
+	Color color;
 	static std::vector<Object*> totalObjects; 
 	
 	virtual void Update();

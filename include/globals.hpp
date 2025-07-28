@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <random>
 #include <iostream>
 #include "window.hpp"
 
@@ -30,3 +31,5 @@ void AppendToArray(T* myObj, T* array[]){
 		}
 	}
 }
+
+int randomInt(int min, int max);
