@@ -8,10 +8,11 @@
 
 
 bool running = true;
-Scene level1(5);
+Scene* scene = new Scene(20);
 int main(){
 	printf("Hello world from cpp\n");
 	mainWindow->Setup();
 	Update();
+	if (scene) delete scene;
 	delete mainWindow;
 }

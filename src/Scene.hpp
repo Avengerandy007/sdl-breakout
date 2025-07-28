@@ -1,15 +1,17 @@
 #include "object.hpp"
 #include <vector>
+#pragma once
 
 class Scene{
 	static MovableObject player;
 	static std::vector<Scene> scenes;
 
 public:
-	Object* blocks;//Array of all blocks in scene
+	std::vector<Object*> blocks;//Array of all blocks in scene
 
-	void SortThis(int index);
+	void SortThis(unsigned short& index, unsigned short& indexOnLine, unsigned short& currentLine);
 	void SetupObjects();
 
 	Scene(unsigned short sizeOfArray);
+	~Scene();
 };

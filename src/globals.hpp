@@ -4,6 +4,8 @@
 #include "window.hpp"
 
 extern Window* mainWindow;
+class Scene;
+extern Scene* scene;
 
 template<typename T>
 int FindIndexOf(T *myObj, std::vector<T*>* list){

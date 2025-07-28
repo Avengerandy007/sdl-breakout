@@ -9,24 +9,38 @@ static MovableObject player;
 static std::vector<Scene> scenes;
 unsigned short amountOfBlocks;
 
-void Scene::SortThis(int index){
-	blocks[index].rect.x = index * 50;
-	if (blocks[index].rect.x >= 450){
-		blocks[index].rect.y -= 50;
-		blocks[index].rect.x = 0;
+void Scene::SortThis(unsigned short& index, unsigned short& indexOnLine, unsigned short& currentLine){
+	if (indexOnLine >= 10){
+		indexOnLine = 0;
+		currentLine++;
 	}
-	std::cout << "Moved object at index " << index << " to position (X,Y) (" << blocks[index].rect.x << "," << blocks[index].rect.y << ")" << std::endl;
+	blocks[index]->rect.y = currentLine * 50;
+	blocks[index]->rect.x = indexOnLine * 50;
+	indexOnLine++;
+	
+	std::cout << "Moved object at index " << index << " to position (X,Y) (" << blocks[index]->rect.x << "," << blocks[index]->rect.y << ")" << std::endl;
 }
 
 void Scene::SetupObjects(){
+	unsigned short indexOnLine = 0;
+	unsigned short currentLine = 0;
 	for (unsigned short i = 0; i < amountOfBlocks; i++){
-		//AppendToArray<Object>(new Object(), &blocks);
-		SortThis(i);
+		SortThis(i, indexOnLine, currentLine);
 	}
 }
 
 Scene::Scene(unsigned short sizeOfArray){
 	amountOfBlocks = sizeOfArray;
-	blocks = new Object[amountOfBlocks];
+	blocks.resize(amountOfBlocks);
+	for(auto& ptr : blocks){
+		ptr = new Object();
+	}
 	Scene::SetupObjects();
+}
+
+Scene::~Scene(){
+	for(Object* block : blocks){
+		delete block;
+	}
+	blocks.clear();
 }
