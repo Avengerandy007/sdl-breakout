@@ -19,10 +19,7 @@ void PollEvents(){
 				running = false;
 				break;
 			case SDL_KEYDOWN:
-				if (e.key.keysym.sym == SDLK_SPACE && scene != nullptr){
-					delete scene;
-					scene = nullptr;
-				}
+				
 				break;
 		}	
 	}

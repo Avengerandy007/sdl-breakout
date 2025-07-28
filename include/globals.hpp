@@ -2,11 +2,14 @@
 #include <vector>
 #include <random>
 #include <iostream>
+#include "object.hpp"
 #include "window.hpp"
 
 extern Window* mainWindow;
 class Scene;
 extern Scene* scene;
+class MovableObject;
+extern MovableObject* player;
 
 template<typename T>
 int FindIndexOf(T *myObj, std::vector<T*>* list){

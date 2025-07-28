@@ -3,9 +3,6 @@
 #pragma once
 
 class Scene{
-	static MovableObject player;
-	static std::vector<Scene> scenes;
-
 public:
 	std::vector<Object*> blocks;//Array of all blocks in scene
 

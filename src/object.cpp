@@ -41,6 +41,7 @@ void MovableObject::Move(){
 
 void MovableObject::Update(){
 	KeepRectAtPos();
+	Object::Update();
 }
 
 void MovableObject::KeepRectAtPos(){

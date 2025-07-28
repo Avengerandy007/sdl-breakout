@@ -5,7 +5,6 @@
 #include <iterator>
 #include <vector>
 
-static MovableObject player;
 static std::vector<Scene> scenes;
 unsigned short amountOfBlocks;
 
