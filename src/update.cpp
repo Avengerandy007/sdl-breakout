@@ -1,4 +1,3 @@
-#include "../include/globals.hpp"
 #include "../include/Scene.hpp"
 #include "../include/update.hpp"
 #include "../include/object.hpp"
@@ -19,7 +18,13 @@ void PollEvents(){
 				running = false;
 				break;
 			case SDL_KEYDOWN:
-				
+				if (e.key.keysym.sym == SDLK_LEFT){
+					player->dir.X = -1;
+					player->Move();
+				}else if(e.key.keysym.sym == SDLK_RIGHT){
+					player->dir.X = 1;
+					player->Move();
+				}
 				break;
 		}	
 	}

@@ -15,6 +15,7 @@ void SetPlayer(){
 	player->rect.h = 25;
 	player->pos.X = 250;
 	player->pos.Y = 400;
+	player->speed = 10;
 }
 
 int main(){

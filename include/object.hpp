@@ -44,8 +44,7 @@ public:
 	int speed;
 
 	void Move();
-
-
+	MovableObject();
 	void Update() override;
 
 private:

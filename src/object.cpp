@@ -39,6 +39,10 @@ void MovableObject::Move(){
 	pos.Y += speed * dir.Y;
 }
 
+MovableObject::MovableObject(){
+	speed = 1;
+}
+
 void MovableObject::Update(){
 	KeepRectAtPos();
 	Object::Update();
