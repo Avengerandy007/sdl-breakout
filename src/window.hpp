@@ -21,7 +21,7 @@ public:
 			return -1;
 		}
 
-		window = SDL_CreateWindow("Shitty breakout", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
+		window = SDL_CreateWindow("Shitty breakout", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 650, 450, SDL_WINDOW_SHOWN);
 		
 		if (window == NULL){
 			printf("Could not create SDL window!");

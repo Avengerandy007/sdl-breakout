@@ -10,11 +10,11 @@ static std::vector<Scene> scenes;
 unsigned short amountOfBlocks;
 
 void Scene::SortThis(unsigned short& index, unsigned short& indexOnLine, unsigned short& currentLine){
-	if (indexOnLine >= 10){
+	if (indexOnLine >= 13){
 		indexOnLine = 0;
 		currentLine++;
 	}
-	blocks[index]->rect.y = currentLine * 50;
+	blocks[index]->rect.y = currentLine * 30;
 	blocks[index]->rect.x = indexOnLine * 50;
 	indexOnLine++;
 	

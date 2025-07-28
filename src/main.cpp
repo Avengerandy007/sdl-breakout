@@ -8,7 +8,7 @@
 
 
 bool running = true;
-Scene* scene = new Scene(20);
+Scene* scene = new Scene(26);
 int main(){
 	printf("Hello world from cpp\n");
 	mainWindow->Setup();
