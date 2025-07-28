@@ -39,7 +39,7 @@ void Scene::SetupObjects(){
 	}
 	
 	for(auto& ptr : balls){
-		ptr = new MovableObject();
+		ptr = new Ball();
 		ptr->pos.X = 600;
 	}
 	SortBalls();
@@ -57,7 +57,7 @@ Scene::~Scene(){
 		delete block;
 	}
 	blocks.clear();
-	for(MovableObject* ball : balls){
+	for(Ball* ball : balls){
 		delete ball;
 	}
 	balls.clear();

@@ -1,5 +1,7 @@
 #include "../include/object.hpp"
+#include "../include/Scene.hpp"
 #include "../include/globals.hpp"
+#include <iostream>
 #include <vector>
 
 std::vector<Object*> Object::totalObjects;
@@ -24,6 +26,7 @@ Object::Object(){
 Object::~Object(){
 	int i = FindIndexOf<Object>(this, &totalObjects); //Find the index of this object in the list
 	totalObjects.erase(totalObjects.begin() + i); //And remove it
+	scene->blocks.erase(scene->blocks.begin() + FindIndexOf<Object>(this, &scene->blocks));
 }
 
 void Object::Render(){
@@ -53,4 +56,38 @@ void MovableObject::Update(){
 void MovableObject::KeepRectAtPos(){
 	rect.x = pos.X;
 	rect.y = pos.Y;
+}
+
+//Ball class defs
+void Ball::Reflect(){
+	dir.X = -dir.X;
+	dir.Y = -dir.Y;
+}
+
+bool Ball::CheckCollsion(Object* obj){
+	if ((((obj->rect.x <= pos.X) && (pos.X <= obj->rect.x + obj->rect.w)) || (pos.X + rect.w >= obj->rect.x)) && ((pos.X + rect.w <= obj->rect.x + obj->rect.w)) && (pos.Y + rect.h <= obj->rect.y + obj->rect.h) && (pos.Y + rect.h >= obj->rect.y)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+Ball::Ball(){
+	dir.X = 0;
+	dir.Y = -1;
+}
+
+void Ball::Update(){
+	Move();
+	MovableObject::KeepRectAtPos();
+	Object::Render();
+	if (CheckCollsion(player)){
+		Reflect();
+	}
+	for(Object* block : scene->blocks){
+		if (CheckCollsion(block)){
+			delete block;
+			Reflect();
+		}
+	}
 }

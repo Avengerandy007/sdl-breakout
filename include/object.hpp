@@ -18,8 +18,9 @@ public:
 	Object();
 	virtual ~Object();
 
-private:
+protected:
 	void Render();
+private:
 	inline void SetColors(){
 		color.r = randomInt(0, 255);
 		color.g = randomInt(0, 255);
@@ -47,6 +48,14 @@ public:
 	MovableObject();
 	void Update() override;
 
-private:
+protected:
 	void KeepRectAtPos();
+};
+
+class Ball : public MovableObject{
+	void Reflect();
+	bool CheckCollsion(Object* obj);
+public:
+	Ball();
+	void Update() override;
 };
