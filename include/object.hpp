@@ -54,9 +54,11 @@ protected:
 };
 
 class Ball : public MovableObject{
-
-	void Reflect();
-	bool CheckCollsion(Object* obj);
+	
+	void ReflectHor();
+	void ReflectVer();
+	bool CheckCollisionHorizontal(Object* obj);
+	bool CheckCollisionVertical(Object* obj);
 	void CheckForWalls();
 public:
 	Ball();

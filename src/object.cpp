@@ -1,4 +1,5 @@
 #include "../include/object.hpp"
+#include "../include/globals.hpp"
 #include "../include/Scene.hpp"
 #include <cmath>
 #include <iostream>
@@ -58,21 +59,32 @@ void MovableObject::KeepRectAtPos(){
 }
 
 //Ball class defs
-void Ball::Reflect(){
+void Ball::ReflectHor(){
 	dir.Y = -dir.Y;
 }
 
+void Ball::ReflectVer(){
+	dir.X = -dir.X;
+}
+
+	
 bool checkingCollision = false;
-bool Ball::CheckCollsion(Object* obj){
+bool Ball::CheckCollisionHorizontal(Object* obj){
 	int Ymax = pos.Y + rect.h;
 	int Xmax = pos.X + rect.w;
 	int objYmax = obj->rect.y + obj->rect.h;
 	int objXmax = obj->rect.x + obj->rect.w;
-	if(((pos.Y <= objYmax && pos.Y >= obj->rect.y) || (Ymax >= obj->rect.y && Ymax <= objYmax)) && ((pos.X >= obj->rect.x && pos.X <= objXmax) || (Xmax >= obj->rect.x && Xmax <= objXmax))){
-		return true;
-	}else{
-		return false;
-	}
+
+	return (((pos.Y <= objYmax && pos.Y >= obj->rect.y) || (Ymax >= obj->rect.y && Ymax <= objYmax)) && (pos.X < objXmax && Xmax > obj->rect.x));
+}
+
+bool Ball::CheckCollisionVertical(Object* obj){
+	int Ymax = pos.Y + rect.h;
+	int Xmax = pos.X + rect.w;
+	int objYmax = obj->rect.y + obj->rect.h;
+	int objXmax = obj->rect.x + obj->rect.w;
+
+	return ((pos.X <= objXmax && pos.X >= obj->rect.x) || (Xmax >= obj->rect.x && Xmax <= objXmax)) && (pos.Y < objYmax && Ymax > obj->rect.y);
 }
 
 Ball::Ball(){
@@ -82,7 +94,7 @@ Ball::Ball(){
 }
 
 void Ball::CheckForWalls(){
-	if (pos.X >= 650){
+	if (pos.X >= 625){
 		dir.X = -1;
 	}else if(pos.X <= 0){
 		dir.X = 1;
@@ -90,25 +102,38 @@ void Ball::CheckForWalls(){
 		dir.Y = 1;
 	}else if(pos.Y >= 450){
 		scene->OnExit();
-		scene = new Scene(20);
+		scene = new Scene(26);
 		player->pos.X = 250;
 	}
 }
+
 void Ball::Update(){
+	CheckForWalls();
+	if (pos.Y >= 450) return;
 	Move();
-	MovableObject::KeepRectAtPos();
-	Object::Render();
-	if (CheckCollsion(player) && !checkingCollision){
+	if (CheckCollisionHorizontal(player) && !checkingCollision){
 		checkingCollision = true;
-		Reflect();
+		ReflectHor();
+	}else if(CheckCollisionVertical(player) && !checkingCollision){
+		checkingCollision = true;
+		ReflectVer();
 	}
 	for(Object* block : scene->blocks){
-		if (CheckCollsion(block) && !checkingCollision){
+		if (checkingCollision) break;
+		if (CheckCollisionHorizontal(block)){
 			checkingCollision = true;
+			int i = FindIndexOf<Object>(block, &scene->blocks);
+			scene->blocks.erase(scene->blocks.begin() + i);
 			delete block;
-			Reflect();
+			ReflectHor();
+		}else if (CheckCollisionVertical(block)){
+			checkingCollision = true;
+			int i = FindIndexOf<Object>(block, &scene->blocks);
+			scene->blocks.erase(scene->blocks.begin() + i);
+			delete block;
+			ReflectVer();
 		}
 	}
-	CheckForWalls();
 	if (checkingCollision) checkingCollision = false;
+	MovableObject::Update();
 }

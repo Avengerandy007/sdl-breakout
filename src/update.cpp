@@ -30,6 +30,13 @@ void PollEvents(){
 	}
 }
 
+void CheckIfAllBlocksDestroyed(){
+	if (scene->blocks.size() == 0){
+		scene->OnExit();
+		scene = new Scene(26);
+		player->pos.X = 250;
+	}
+}
 
 void Update(){
 	while(running){
@@ -39,6 +46,7 @@ void Update(){
 			obj->Update();
 		}
 		SDL_RenderPresent(mainWindow->renderer);
+		CheckIfAllBlocksDestroyed();
 		SDL_Delay(6);
 	}
 }
