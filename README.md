@@ -1,5 +1,5 @@
 # About
-I just didn't have anything to de better and so I decided to try to learn C++ and what better way to do that than using SDL2 to make games. I like classic arcade games (because they're easy to remake) and I picked Breakout as my next experiment.
+I just didn't have anything better to do and so I decided to try to learn C++ and what better way to do that than using SDL2 to make games. I like classic arcade games (because they're easy to remake) and I picked Breakout as my next experiment.
 
 # Important!! Windows defender for some reason might flag it as a Trojan, you can look through the source code yourself, there is nothing malicious about it.
 
