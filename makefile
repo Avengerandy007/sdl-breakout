@@ -18,7 +18,7 @@ endif
 # Files
 SRCS := $(wildcard src/*.cpp)
 OBJS := $(SRCS:.cpp=.o)
-TARGET = app.exe
+TARGET = Breakout
 
 # Build app
 $(TARGET): $(OBJS)
