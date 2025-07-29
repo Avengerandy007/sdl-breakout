@@ -41,10 +41,16 @@ Scene::Scene(unsigned short sizeOfArray){
 	Scene::SetupObjects();
 }
 
-Scene::~Scene(){
+void Scene::OnExit(){
 	for(Object* block : blocks){
-		delete block;
+		if(block) delete block;
+		block = nullptr;
 	}
 	blocks.clear();
-	delete ball;
+	if(ball) delete ball;
+	ball = nullptr;
+}
+
+Scene::~Scene(){
+	OnExit();
 }

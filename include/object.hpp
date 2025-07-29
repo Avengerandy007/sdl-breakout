@@ -54,8 +54,10 @@ protected:
 };
 
 class Ball : public MovableObject{
+
 	void Reflect();
 	bool CheckCollsion(Object* obj);
+	void CheckForWalls();
 public:
 	Ball();
 	void Update() override;

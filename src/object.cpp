@@ -13,7 +13,7 @@ void Object::Update(){
 
 Object::Object(){
 	SetColors();
-	totalObjects.push_back(this);	
+	totalObjects.push_back(this);
 	rect.x = 0;
 	rect.y = 0;
 	rect.w = 50;
@@ -26,7 +26,6 @@ Object::Object(){
 Object::~Object(){
 	int i = FindIndexOf<Object>(this, &totalObjects); //Find the index of this object in the list
 	totalObjects.erase(totalObjects.begin() + i); //And remove it
-	scene->blocks.erase(scene->blocks.begin() + FindIndexOf<Object>(this, &scene->blocks));
 }
 
 void Object::Render(){
@@ -60,16 +59,16 @@ void MovableObject::KeepRectAtPos(){
 
 //Ball class defs
 void Ball::Reflect(){
-	int factor = randomInt(-45, 45);
-	dir.X = dir.X + factor;
-	dir.Y = dir.Y + factor;
-	float magnitude = std::sqrt(dir.X * dir.X + dir.Y * dir.Y);
-	dir.X /= magnitude;
-	dir.Y /= magnitude;
+	dir.Y = -dir.Y;
 }
 
+bool checkingCollision = false;
 bool Ball::CheckCollsion(Object* obj){
-	if ((((obj->rect.x <= pos.X) && (pos.X <= obj->rect.x + obj->rect.w)) || (pos.X + rect.w >= obj->rect.x)) && ((pos.X + rect.w <= obj->rect.x + obj->rect.w)) && (pos.Y + rect.h <= obj->rect.y + obj->rect.h) && (pos.Y + rect.h >= obj->rect.y)){
+	int Ymax = pos.Y + rect.h;
+	int Xmax = pos.X + rect.w;
+	int objYmax = obj->rect.y + obj->rect.h;
+	int objXmax = obj->rect.x + obj->rect.w;
+	if(((pos.Y <= objYmax && pos.Y >= obj->rect.y) || (Ymax >= obj->rect.y && Ymax <= objYmax)) && ((pos.X >= obj->rect.x && pos.X <= objXmax) || (Xmax >= obj->rect.x && Xmax <= objXmax))){
 		return true;
 	}else{
 		return false;
@@ -77,22 +76,39 @@ bool Ball::CheckCollsion(Object* obj){
 }
 
 Ball::Ball(){
-	speed = 2;
-	dir.X = 0;
+	speed = 1;
+	dir.X = 1;
 	dir.Y = 1;
 }
 
+void Ball::CheckForWalls(){
+	if (pos.X >= 650){
+		dir.X = -1;
+	}else if(pos.X <= 0){
+		dir.X = 1;
+	}else if (pos.Y <= 0){
+		dir.Y = 1;
+	}else if(pos.Y >= 450){
+		scene->OnExit();
+		scene = new Scene(20);
+		player->pos.X = 250;
+	}
+}
 void Ball::Update(){
 	Move();
 	MovableObject::KeepRectAtPos();
 	Object::Render();
-	if (CheckCollsion(player)){
+	if (CheckCollsion(player) && !checkingCollision){
+		checkingCollision = true;
 		Reflect();
 	}
 	for(Object* block : scene->blocks){
-		if (CheckCollsion(block)){
+		if (CheckCollsion(block) && !checkingCollision){
+			checkingCollision = true;
 			delete block;
 			Reflect();
 		}
 	}
+	CheckForWalls();
+	if (checkingCollision) checkingCollision = false;
 }
