@@ -53,14 +53,3 @@ To build the project simply open your favourite terminal emulator and run the fo
 cd Path/To/Makefile
 make
 ```
-
-If the compiler complains about not finding SDL2 open the makefile again and change:
-```make
-CXXFLAGS = -Wall -g $(shell sdl2-config --cflags)
-LDFLAGS  = $(shell sdl2-config --libs)
-```
-to:
-```make
-CXXFLAGS = -Wall -g Path/To/SDL2/Include
-LDFLAGS  = Path/To/SDL2/Libs
-```
