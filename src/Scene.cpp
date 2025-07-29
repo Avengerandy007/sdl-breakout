@@ -31,7 +31,7 @@ void Scene::SetupObjects(){
 		SortBlocks(i, indexOnLine, currentLine);
 	}
 	ball = new Ball();
-	ball->pos.X = 300;
+	ball->pos.X = 250;;
 	ball->pos.Y = 225;
 }
 
@@ -49,6 +49,7 @@ void Scene::OnExit(){
 	blocks.clear();
 	if(ball) delete ball;
 	ball = nullptr;
+	player->speed = 10;
 }
 
 Scene::~Scene(){

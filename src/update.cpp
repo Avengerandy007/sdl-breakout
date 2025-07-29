@@ -24,6 +24,9 @@ void PollEvents(){
 				}else if(e.key.keysym.sym == SDLK_RIGHT){
 					player->dir.X = 1;
 					player->Move();
+				}else if (e.key.keysym.sym == SDLK_h){
+					player->speed = 50;
+					scene->ball->speed = 3;
 				}
 				break;
 		}	
