@@ -5,7 +5,7 @@ I just didn't have anything better to do and so I decided to try to learn C++ an
 
 # Build instructions
 
-Download Make for your respective platform.
+Download Make for your respective platform and add it to your system PATH.
 
 ## Windows
 Install the x64 MinGW version of g++ (if you don't have it already) and add the bin folder to your PATH.
