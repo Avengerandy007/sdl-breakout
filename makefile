@@ -7,8 +7,8 @@ SDL2Win_PATH = /usr/include/SDL2Win
 
 ifeq ($(CXX),clang++)
 # Linux deployment
-CXXFLAGS = -Wall -g $(shell sdl2-config --cflags)
-LDFLAGS  = $(shell sdl2-config --libs)
+CXXFLAGS = -Wall -g $(shell sdl2-config --cflags) -DSDL_MAIN_HANDLED -O2 -DNDEBUG
+LDFLAGS  = $(shell sdl2-config --libs) -ldl -lpthread -lm
 else
 # Windows deployment
 CXXFLAGS = -Wall -g -I$(SDL2Win_PATH)/include -static-libstdc++ -static-libgcc -DSDL_MAIN_HANDLED -O2 -DNDEBUG
@@ -31,3 +31,7 @@ src/%.o: src/%.cpp
 # Clean
 clean:
 	rm -f $(TARGET) $(OBJS)
+
+debug: CXXFLAGS = -Wall -g $(shell sdl2-config --cflags) -DSDL_MAIN_HANDLED
+debug: LDFLAGS  = $(shell sdl2-config --libs) -ldl -lpthread -lm
+debug: clean $(TARGET)

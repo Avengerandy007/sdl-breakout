@@ -18,7 +18,6 @@ void Scene::SortBlocks(unsigned short& index, unsigned short& indexOnLine, unsig
 	blocks[index]->rect.x = indexOnLine * 50;
 	indexOnLine++;
 	
-	std::cout << "Moved object at index " << index << " to position (X,Y) (" << blocks[index]->rect.x << "," << blocks[index]->rect.y << ")" << std::endl;
 }
 
 void Scene::SetupObjects(){
@@ -42,7 +41,7 @@ Scene::Scene(unsigned short sizeOfArray){
 }
 
 void Scene::OnExit(){
-	for(Object* block : blocks){
+	for(Object*& block : blocks){
 		if(block) delete block;
 		block = nullptr;
 	}

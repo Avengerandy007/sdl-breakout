@@ -1,8 +1,6 @@
 #include "../include/object.hpp"
 #include "../include/globals.hpp"
 #include "../include/Scene.hpp"
-#include <cmath>
-#include <iostream>
 #include <vector>
 
 std::vector<Object*> Object::totalObjects;
@@ -26,6 +24,7 @@ Object::Object(){
 
 Object::~Object(){
 	int i = FindIndexOf<Object>(this, &totalObjects); //Find the index of this object in the list
+	if (i == -1) return;
 	totalObjects.erase(totalObjects.begin() + i); //And remove it
 }
 
@@ -123,14 +122,14 @@ void Ball::Update(){
 		if (CheckCollisionHorizontal(block)){
 			checkingCollision = true;
 			int i = FindIndexOf<Object>(block, &scene->blocks);
-			scene->blocks.erase(scene->blocks.begin() + i);
 			delete block;
+			scene->blocks.erase(scene->blocks.begin() + i);
 			ReflectHor();
 		}else if (CheckCollisionVertical(block)){
 			checkingCollision = true;
 			int i = FindIndexOf<Object>(block, &scene->blocks);
-			scene->blocks.erase(scene->blocks.begin() + i);
 			delete block;
+			scene->blocks.erase(scene->blocks.begin() + i);
 			ReflectVer();
 		}
 	}

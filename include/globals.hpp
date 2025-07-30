@@ -11,7 +11,7 @@ class MovableObject;
 extern MovableObject* player;
 
 template<typename T>
-int FindIndexOf(T *myObj, std::vector<T*>* list){
+int FindIndexOf(T* myObj, std::vector<T*>* list){
 	int i = 0;
 	for(T* obj : *list){
 		if (obj == myObj){
