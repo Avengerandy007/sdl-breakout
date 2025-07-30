@@ -7,6 +7,7 @@
 
 
 bool running = true;
+Window* mainWindow = new Window();
 Scene* scene = new Scene(26);
 MovableObject* player = new MovableObject(); 
 

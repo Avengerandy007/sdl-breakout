@@ -1,4 +1,5 @@
 #include "../include/window.hpp"
+#include <iostream>
 
 void Window::Render(){
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -20,8 +21,8 @@ int Window::Setup(){
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
 
-	if (renderer == NULL){
-		printf("Could not create SDL renderer!");
+	if (!renderer){
+		std::cout << "Could not create renderer! " << SDL_GetError() << std::endl;
 		return -1;
 	}
 	
@@ -29,7 +30,7 @@ int Window::Setup(){
 }
 
 Window::~Window(){
-	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
 	SDL_Quit();
 }

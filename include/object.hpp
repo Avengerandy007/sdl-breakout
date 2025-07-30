@@ -11,7 +11,7 @@
 
 class Object{
 public:
-	SDL_Rect rect;
+	SDL_Rect rect = {0, 0, 50, 30};
 	Color color;
 	static std::vector<Object*> totalObjects; 
 	

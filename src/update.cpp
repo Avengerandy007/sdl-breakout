@@ -5,10 +5,6 @@
 #include <SDL2/SDL_keyboard.h>
 #include <SDL2/SDL_keycode.h>
 #include <SDL2/SDL_render.h>
-#include <iostream>
-#include <ostream>
-
-Window* mainWindow = new Window();
 
 void PollEvents(){
 	SDL_Event e;
