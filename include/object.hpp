@@ -13,7 +13,6 @@ class Object{
 public:
 	SDL_Rect rect;
 	Color color;
-	static std::vector<Object*> totalObjects; 
 	
 	virtual void Update();
 	Object();

@@ -1,6 +1,6 @@
 # Compiler
-CXX = x86_64-w64-mingw32-g++
-#CXX = clang++
+#CXX = x86_64-w64-mingw32-g++
+CXX = clang++
 
 # SDL2 Path (Windows dev libs)
 SDL2Win_PATH = /usr/include/SDL2Win

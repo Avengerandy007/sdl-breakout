@@ -45,9 +45,11 @@ void Update(){
 	while(running){
 		PollEvents();
 		mainWindow->Render();
-		for(Object* obj : Object::totalObjects){
-			obj->Update();
+		for (Object* block : scene->blocks){
+			block->Update();
 		}
+		player->Update();
+		scene->ball->Update();
 		SDL_RenderPresent(mainWindow->renderer);
 		CheckIfAllBlocksDestroyed();
 		SDL_Delay(6);

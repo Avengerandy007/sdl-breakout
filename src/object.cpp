@@ -5,7 +5,6 @@
 #include <iostream>
 #include <vector>
 
-std::vector<Object*> Object::totalObjects;
 
 //Object class definition
 void Object::Update(){
@@ -14,7 +13,6 @@ void Object::Update(){
 
 Object::Object(){
 	SetColors();
-	totalObjects.push_back(this);
 	rect.x = 0;
 	rect.y = 0;
 	rect.w = 50;
@@ -24,10 +22,8 @@ Object::Object(){
 	}
 }
 
-Object::~Object(){
-	int i = FindIndexOf<Object>(this, &totalObjects); //Find the index of this object in the list
-	totalObjects.erase(totalObjects.begin() + i); //And remove it
-}
+Object::~Object(){}
+
 
 void Object::Render(){
 	SDL_SetRenderDrawColor(mainWindow->renderer, color.r, color.g, color.b, color.a);
