@@ -26,7 +26,6 @@ make
 ```
 
 ## Linux
-### Note: The linux version is kinda freaky and might not work properly.
 Install clang++ and add that it to your PATH.
 
 Download the SDL2 library for linux using your desired package manager:
